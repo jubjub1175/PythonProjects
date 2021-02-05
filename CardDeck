@@ -1,6 +1,13 @@
-#Generate Empty Deck
+# Basic Card Deck. Reveals top card of deck and places it in a seperate pile.
+
+import random
+import time
+
+def DeckGeneration():
+	
+	#Generate Empty Deck
 	Deck = []
-	# Create Spades
+	# Create each house of cards in the deck
 	i = 1
 	while i < 14:
 		Deck.append(str(i) + " of Spades")
@@ -21,7 +28,32 @@
 		Deck.append(str(i) + " of Clubs")
 		i += 1
 
-	print(Deck)
+	return(Deck)
 
-DeckGeneration()
+
+#Function that reveals cards from the deck until it reaches the last card.
+def Reveal(deck, card):
+	choice = input("Press Enter" )
+	if choice == str("") and card < 51:
+		print(deck[card])
+		card += 1
+		Reveal(deck, card)
+	elif choice == str("") and card == 51:
+		card = 51
+		print("OUT OF CARDS")
+		Reveal(deck, card)
+	else:
+		print("Invalid Input")
+		Reveal(deck, card)
+
+
+def Main():
+
+	#Creates a new deck and shuffles the deck. Then Reveals cards from the top.
+	NewDeck = (DeckGeneration())
+	random.shuffle(NewDeck)
+	Reveal(NewDeck, 0)
+
+
+Main()
 
